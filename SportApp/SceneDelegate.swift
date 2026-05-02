@@ -13,10 +13,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainViewController = storyboard.instantiateInitialViewController() ?? UIViewController()
+
+        if !UserDefaults.standard.bool(forKey: "hasSeenOnboarding") {
+            let onboardingController = OnboradingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+            onboardingController.finishHandler = { [weak self] in
+                UserDefaults.standard.set(true, forKey: "hasSeenOnboarding")
+                self?.setRootViewController(mainViewController, animated: true)
+            }
+            window = UIWindow(windowScene: windowScene)
+            window?.rootViewController = onboardingController
+        } else {
+            window = UIWindow(windowScene: windowScene)
+            window?.rootViewController = mainViewController
+        }
+
+        window?.backgroundColor = .systemBackground
+        window?.makeKeyAndVisible()
+    }
+
+    private func setRootViewController(_ viewController: UIViewController, animated: Bool) {
+        guard let window = window else { return }
+        if animated {
+            UIView.transition(with: window, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                window.rootViewController = viewController
+            }, completion: nil)
+        } else {
+            window.rootViewController = viewController
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
