@@ -38,4 +38,19 @@ enum SportType: String {
         case .tennis:     return "Sets"
         }
     }
+    var displayName: String {
+           return self.rawValue.capitalized
+    }
+    var imageName: String {
+           switch self {
+           case .football:   return "foot"
+           case .basketball: return "basketball"
+           case .cricket:    return "Cricket"
+           case .tennis:     return "tennis"
+           }
+       }
+
+       static var allSports: [SportType] {
+           return [.football, .basketball, .cricket, .tennis]
+       }
 }
