@@ -10,9 +10,9 @@ import UIKit
 class OnboradingViewController: UIPageViewController {
 
     private lazy var items: [OnboardingItem] = [
-        OnboardingItem(title: "Welcome to SportApp", description: "Swipe through three quick screens to get started.", image: "messiBackground"),
-        OnboardingItem(title: "Learn Your Favorite Sports", description: "Get live updates, favorite leagues, and custom sport content.", image: "messiBackground"),
-        OnboardingItem(title: "Ready to Play", description: "Tap Get Started to move into the app and enjoy the experience.", image: "messiBackground")
+        OnboardingItem(title: "Welcome to Remontada App", description: "Your hub for live scores, top leagues, and real-time updates.", image: "messiBackground"),
+        OnboardingItem(title: "Learn Your Favorite Sports", description: "Get live updates, favorite leagues, and custom sport content.", image: "LebronBackground"),
+        OnboardingItem(title: "Ready to Play", description: "Tap Get Started to move into the app and enjoy the experience.", image: "CarlosBackground")
     ]
 
     private var pages: [OnboardingPageViewController] = []
