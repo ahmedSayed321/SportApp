@@ -15,22 +15,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainViewController = storyboard.instantiateInitialViewController() ?? UIViewController()
+        // Show the animated Splash screen first
+        let splashVC = SplashViewController()
+        splashVC.onAnimationFinished = { [weak self] in
+            guard let self = self else { return }
 
-        if !UserDefaults.standard.bool(forKey: "hasSeenOnboarding") {
-            let onboardingController = OnboradingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
-            onboardingController.finishHandler = { [weak self] in
-                UserDefaults.standard.set(true, forKey: "hasSeenOnboarding")
-                self?.setRootViewController(mainViewController, animated: true)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainViewController = storyboard.instantiateInitialViewController() ?? UIViewController()
+
+            if !UserDefaults.standard.bool(forKey: "hasSeenOnboarding") {
+                let onboardingController = OnboradingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+                onboardingController.finishHandler = { [weak self] in
+                    UserDefaults.standard.set(true, forKey: "hasSeenOnboarding")
+                    self?.setRootViewController(mainViewController, animated: true)
+                }
+                self.setRootViewController(onboardingController, animated: true)
+            } else {
+                self.setRootViewController(mainViewController, animated: true)
             }
-            window = UIWindow(windowScene: windowScene)
-            window?.rootViewController = onboardingController
-        } else {
-            window = UIWindow(windowScene: windowScene)
-            window?.rootViewController = mainViewController
         }
 
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = splashVC
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
     }
