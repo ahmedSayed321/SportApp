@@ -130,7 +130,6 @@
 				3EC2B4D02FA6A2D800086824 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				4C00E6B12FA7259800BDA08C /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				4C00E6B62FA7266300BDA08C /* XCRemoteSwiftPackageReference "Alamofire" */,
-
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7EA0C2B22F9F9518005BED53 /* Products */;
@@ -366,6 +365,8 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.6.0;
+			};
+		};
 		4C00E6B12FA7259800BDA08C /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -389,6 +390,7 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3EC2B4D02FA6A2D800086824 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
 		4C00E6B22FA7259800BDA08C /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4C00E6B12FA7259800BDA08C /* XCRemoteSwiftPackageReference "SDWebImage" */;
