@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
 		3EC2B4D22FA6A2D800086824 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3EC2B4D12FA6A2D800086824 /* Lottie */; };
+
+		4C00E6B32FA7259800BDA08C /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4C00E6B22FA7259800BDA08C /* SDWebImage */; };
+		4C00E6B52FA7259800BDA08C /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4C00E6B42FA7259800BDA08C /* SDWebImageMapKit */; };
+		4C00E6B82FA7266300BDA08C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4C00E6B72FA7266300BDA08C /* Alamofire */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +46,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				3EC2B4D22FA6A2D800086824 /* Lottie in Frameworks */,
+				4C00E6B82FA7266300BDA08C /* Alamofire in Frameworks */,
+				4C00E6B52FA7259800BDA08C /* SDWebImageMapKit in Frameworks */,
+				4C00E6B32FA7259800BDA08C /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +94,9 @@
 			name = SportApp;
 			packageProductDependencies = (
 				3EC2B4D12FA6A2D800086824 /* Lottie */,
+				4C00E6B22FA7259800BDA08C /* SDWebImage */,
+				4C00E6B42FA7259800BDA08C /* SDWebImageMapKit */,
+				4C00E6B72FA7266300BDA08C /* Alamofire */,
 			);
 			productName = SportApp;
 			productReference = 7EA0C2B12F9F9518005BED53 /* SportApp.app */;
@@ -115,6 +128,9 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				3EC2B4D02FA6A2D800086824 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				4C00E6B12FA7259800BDA08C /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				4C00E6B62FA7266300BDA08C /* XCRemoteSwiftPackageReference "Alamofire" */,
+
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7EA0C2B22F9F9518005BED53 /* Products */;
@@ -350,6 +366,20 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.6.0;
+		4C00E6B12FA7259800BDA08C /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.17.0;
+			};
+		};
+		4C00E6B62FA7266300BDA08C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.11.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -359,6 +389,20 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3EC2B4D02FA6A2D800086824 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		4C00E6B22FA7259800BDA08C /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C00E6B12FA7259800BDA08C /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		4C00E6B42FA7259800BDA08C /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C00E6B12FA7259800BDA08C /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+		4C00E6B72FA7266300BDA08C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C00E6B62FA7266300BDA08C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
