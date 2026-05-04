@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "Baseball stock vector_ Illustration of ball, softball - 25302508.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
