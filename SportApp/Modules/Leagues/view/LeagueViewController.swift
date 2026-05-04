@@ -76,6 +76,8 @@ extension LeagueViewController : LeaguesViewProtocol{
     }
 }
 
+
+
 extension LeagueViewController : UITableViewDelegate ,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         presenter?.getLeaguesCount() ?? 0
@@ -88,7 +90,6 @@ extension LeagueViewController : UITableViewDelegate ,UITableViewDataSource{
         if let league = presenter?.getLeague(at: indexPath.row) {
             cell.setOutlets(league, sport: sport!)
         }
-    
 
         
         return cell

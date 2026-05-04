@@ -11,9 +11,19 @@ import Alamofire
 protocol NetworkServicesProtocol{
     
     func getLeagueData(sport : SportType,completion: @escaping ([League]) -> Void)
-}
+    func getLeagueEventsData(
+            sport : SportType,
+            leagueId: Int,
+            from : String,
+            to : String,
+            timeZone : String,
+            completion: @escaping (Result<LeagueEventsResponse, Error>) -> Void
+        )}
 
 class NetworkServices: NetworkServicesProtocol {
+   
+    
+   
     
     static let instanse : NetworkServicesProtocol = NetworkServices()
     private init(){}
@@ -36,6 +46,32 @@ class NetworkServices: NetworkServicesProtocol {
                    }
                }
        }
+    
+    
+    func getLeagueEventsData(sport : SportType,leagueId: Int, from: String, to: String,timeZone : String, completion: @escaping (Result<LeagueEventsResponse, any Error>) -> Void) {
+        let params: Parameters = [
+            "met"    : "Leagues",
+            "APIkey" : apiKey,
+            "from" : from,
+            "to" : to,
+            "leagueId" : leagueId,
+            "timezone" : timeZone
+        ]
+        
+        AF.request(sport.baseURL, parameters: params)
+               .responseDecodable(of: LeagueEventsResponse.self) { response in
+                   switch response.result {
+                   case .success(let eventsResponse):
+                       completion(.success(eventsResponse))
+                   case .failure(let error):
+                       completion(.failure(error))
+                   }
+               }
+        
+    }
+    
+    
+    
     
     
 }
