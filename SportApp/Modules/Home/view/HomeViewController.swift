@@ -61,6 +61,14 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sport = sports[indexPath.item]
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let leagueVC = storyboard.instantiateViewController(withIdentifier: "LeagueViewController") as! LeagueViewController
+            
+            leagueVC.sport = sport
+            leagueVC.presenter = LeaguesPresenter(view: leagueVC)
+            
+            navigationController?.pushViewController(leagueVC, animated: true)
         print("Selected: \(sport.displayName)")
     }
     

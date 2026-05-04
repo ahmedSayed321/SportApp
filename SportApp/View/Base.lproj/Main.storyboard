@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Mc-LX-6S3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Mc-LX-6S3">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -96,6 +96,48 @@
             </objects>
             <point key="canvasLocation" x="-77" y="-1505"/>
         </scene>
+        <!--League View Controller-->
+        <scene sceneID="fA3-KX-gku">
+            <objects>
+                <viewController storyboardIdentifier="LeagueViewController" id="dt4-rb-NCs" customClass="LeagueViewController" customModule="SportApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eCL-jM-6fh">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="x4c-3Z-hGf">
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="leQ-Gv-HaM">
+                                <rect key="frame" x="16" y="138" width="361" height="680"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="dt4-rb-NCs" id="M69-IE-oLa"/>
+                                    <outlet property="delegate" destination="dt4-rb-NCs" id="UPr-bf-dgU"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ad3-iv-k3k"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="x4c-3Z-hGf" firstAttribute="top" secondItem="ad3-iv-k3k" secondAttribute="top" id="0W6-Gc-3fG"/>
+                            <constraint firstItem="ad3-iv-k3k" firstAttribute="trailing" secondItem="leQ-Gv-HaM" secondAttribute="trailing" constant="16" id="7d7-Gn-C5G"/>
+                            <constraint firstItem="x4c-3Z-hGf" firstAttribute="leading" secondItem="ad3-iv-k3k" secondAttribute="leading" id="Bhl-bn-S09"/>
+                            <constraint firstItem="leQ-Gv-HaM" firstAttribute="bottom" secondItem="ad3-iv-k3k" secondAttribute="bottom" id="Ept-sJ-BBM"/>
+                            <constraint firstItem="x4c-3Z-hGf" firstAttribute="trailing" secondItem="ad3-iv-k3k" secondAttribute="trailing" id="Occ-BY-9Xd"/>
+                            <constraint firstItem="leQ-Gv-HaM" firstAttribute="leading" secondItem="ad3-iv-k3k" secondAttribute="leading" constant="16" id="aCL-lz-abJ"/>
+                            <constraint firstItem="leQ-Gv-HaM" firstAttribute="top" secondItem="x4c-3Z-hGf" secondAttribute="bottom" constant="23" id="hpH-xf-iq5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="x4c-3Z-hGf" id="sKg-8n-cF0"/>
+                        <outlet property="tableView" destination="leQ-Gv-HaM" id="W2E-4X-JWG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QPy-A5-b1d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1067.9389312977098" y="-1332.3943661971832"/>
+        </scene>
         <!--Item-->
         <scene sceneID="VU4-ah-SFm">
             <objects>
@@ -103,7 +145,7 @@
                     <tabBarItem key="tabBarItem" title="Item" id="MgO-xN-Lrh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UN1-Cp-QyE">
-                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
