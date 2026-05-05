@@ -54,7 +54,7 @@ extension CustomLeagueTableViewCell {
         super.layoutSubviews()
         contentView.frame = bounds.inset(by: UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
         contentView.layer.cornerRadius = 12
-        contentView.clipsToBounds = true
+        contentView.clipsToBounds = false
     }
 
     private func setupUI() {
@@ -63,7 +63,13 @@ extension CustomLeagueTableViewCell {
 
         contentView.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
         contentView.layer.cornerRadius = 12
-        contentView.clipsToBounds = true
+        contentView.clipsToBounds = false
+        
+        contentView.layer.shadowColor = UIColor.systemGreen.cgColor
+        contentView.layer.shadowOpacity = 0.5
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        contentView.layer.shadowRadius = 5
+        contentView.layer.masksToBounds = false
 
         leagueImage.clipsToBounds = true
         leagueImage.layer.cornerRadius = 30

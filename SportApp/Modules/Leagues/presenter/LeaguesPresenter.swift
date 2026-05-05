@@ -13,6 +13,8 @@ class LeaguesPresenter: LeaguesPresenterProtocol {
     weak var view: LeaguesViewProtocol?
     private var leagues: [League] = []
     private let network: NetworkServicesProtocol
+    private var filteredLeagues: [League] = []
+    private var isSearching: Bool = false
     
     init(view: LeaguesViewProtocol, network: NetworkServicesProtocol = NetworkServices.instanse) {
         self.view = view
@@ -35,7 +37,25 @@ class LeaguesPresenter: LeaguesPresenterProtocol {
         }
     }
     
-    func getLeagues() -> [League]   { return leagues }
-    func getLeaguesCount() -> Int   { return leagues.count }
-    func getLeague(at index: Int) -> League { return leagues[index] }
+    func filterLeagues(with query: String) {
+            if query.isEmpty {
+                isSearching = false
+                filteredLeagues = []
+            } else {
+                isSearching = true
+                filteredLeagues = leagues.filter {
+                    $0.leagueName.lowercased().contains(query.lowercased()) 
+                }
+            }
+        DispatchQueue.main.async{
+            self.view?.didFetchLeagues()
+        }
+        }
+    
+   
+    func getLeagues() -> [League]   { return isSearching ? filteredLeagues : leagues }
+    
+    func getLeaguesCount() -> Int   { return isSearching ? filteredLeagues.count : leagues.count }
+    
+    func getLeague(at index: Int) -> League { return isSearching ? filteredLeagues[index] : leagues[index] }
 }

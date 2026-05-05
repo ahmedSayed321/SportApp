@@ -11,6 +11,8 @@ protocol LeaguesPresenterProtocol: AnyObject {
     func getLeagues() -> [League]
     func getLeaguesCount() -> Int
     func getLeague(at index: Int) -> League
+    func filterLeagues(with query: String)
+    
 }
 
 protocol LeaguesViewProtocol: AnyObject {
