@@ -24,11 +24,11 @@ class LeagueDetailsViewController: UIViewController {
 
 extension LeagueDetailsViewController : LeagueEventsViewProtocol{
     func didFetchLeaguesEvents() {
-        <#code#>
+        
     }
     
     func didFailWithError(_ error: String) {
-        <#code#>
+        
     }
     
     func showLoading() {
