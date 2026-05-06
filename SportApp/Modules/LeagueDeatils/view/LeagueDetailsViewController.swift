@@ -125,8 +125,9 @@ extension LeagueDetailsViewController : LeagueEventsViewProtocol{
     
     func didFailWithError(_ error: String) {
     
+
     }
-    
+
     func showLoading() {
         indicator.startAnimating()
     }

@@ -19,9 +19,24 @@ class LeagueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Leagues"
         
+        // Navigation Bar Appearance
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1)
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.systemGreen,
+            .font: UIFont.boldSystemFont(ofSize: 22)
+        ]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.tintColor = .systemGreen
+        
+        searchBar.delegate = self
         searchBar.searchTextField.textColor = .white
-        
         searchBar.searchTextField.leftView?.tintColor = .white
         
         indicator.center = view.center
@@ -123,3 +138,19 @@ extension LeagueViewController : UITableViewDelegate ,UITableViewDataSource{
     
 }
 
+extension LeagueViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.filterLeagues(with: searchText)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
+        presenter?.filterLeagues(with: "")
+        
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.becomeFirstResponder()
+    }
+}
