@@ -23,7 +23,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         let nib = UINib(nibName: "CustomCollectionViewCell", bundle: nil)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(nib, forCellWithReuseIdentifier: "cell")
+        collectionView.register(nib, forCellWithReuseIdentifier: "teamAndHomeCell")
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,7 +51,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HomeCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamAndHomeCell", for: indexPath) as! HomeCollectionViewCell
         let sport = sports[indexPath.item]
         cell.sportName.text = sport.displayName
         cell.img.image = UIImage(named: sport.imageName)

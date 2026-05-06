@@ -11,11 +11,19 @@ protocol LeagueDetailsProtocol : AnyObject{
         leagueId: Int,
         from: String,
         to: String,
-        timeZone : String)
+        timeZone : String,
+        eventType:EventStatus)
     
     func getLeagues() -> [LeagueEvent]
     func getLeaguesCount() -> Int
     func getLeague(at index: Int) -> LeagueEvent
+    func getLatestLeague(at index: Int) -> LeagueEvent
+    func getLatestEventCount()->Int
+    func fetchTeams(leagueId: Int , sport : SportType,eventType:EventStatus)
+    func getTeams() -> [Team]
+    func getTeamsCount() -> Int
+    func getTeam(at index: Int) -> Team
+    
 }
 
 protocol LeagueEventsViewProtocol : AnyObject{
