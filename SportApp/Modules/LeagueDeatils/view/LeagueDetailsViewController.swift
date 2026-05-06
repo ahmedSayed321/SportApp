@@ -348,7 +348,6 @@ extension LeagueDetailsViewController{
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 0)
         section.interGroupSpacing = 12
 
-        // ✅ Header للسكشن التالت
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .absolute(44)
