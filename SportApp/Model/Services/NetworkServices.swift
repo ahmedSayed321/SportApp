@@ -12,22 +12,66 @@ protocol NetworkServicesProtocol{
     
     func getLeagueData(sport : SportType,completion: @escaping ([League]) -> Void)
     func getLeagueEventsData(
-            sport : SportType,
-            leagueId: Int,
-            from : String,
-            to : String,
-            timeZone : String,
-            completion: @escaping (Result<LeagueEventsResponse, Error>) -> Void
-        )}
+        sport : SportType,
+        leagueId: Int,
+        from : String,
+        to : String,
+        timeZone : String,
+        completion: @escaping (Result<LeagueEventsResponse, Error>) -> Void
+    )
+    func getTeams(leagueId : Int,sport : SportType , completion: @escaping ([Team]) -> Void)
+        
+        func getPlayers(teamId : Int,sport : SportType , completion: @escaping ([Player]) -> Void)
+}
 
 class NetworkServices: NetworkServicesProtocol {
-   
-    
-   
-    
     static let instanse : NetworkServicesProtocol = NetworkServices()
     private init(){}
     private let apiKey = "d5f5ec6ad3d3f8848bff82cd403eaff46889e2aa61bc5dee3be3b4b32f12c2d3"
+    func getTeams(leagueId: Int, sport: SportType, completion: @escaping ([Team]) -> Void) {
+            let params: Parameters = [
+                "met"    : "Teams",
+                "APIkey" : apiKey,
+                "leagueId" : leagueId,
+                
+            ]
+            print("Aalamooooooooooooooo")
+            AF.request(sport.baseURL, parameters: params)
+                   .responseDecodable(of: TeamResponse.self) { response in
+                       print(response.result)
+                       switch response.result {
+                       case .success(let eventsResponse):
+                           print("eventsResponse",eventsResponse.result?.count)
+                           completion(eventsResponse.result ?? [])
+                       case .failure(_):
+                           print("I entered the error section")
+                           completion([])
+                       }
+                   }
+        }
+        
+        func getPlayers(teamId: Int, sport: SportType , completion: @escaping ([Player]) -> Void) {
+            let params: Parameters = [
+                "met"    : "Players",
+                "APIkey" : apiKey,
+                "teamId" : teamId,
+            ]
+            
+            AF.request(sport.baseURL, parameters: params)
+                   .responseDecodable(of: PlayerResponse.self) { response in
+                       switch response.result {
+                       case .success(let eventsResponse):
+                           completion(eventsResponse.result ?? [])
+                       case .failure(let error):
+                           completion([])
+                       }
+                   }
+        }
+   
+    
+   
+    
+   
     
     func getLeagueData(sport: SportType, completion: @escaping ([League]) -> Void) {
            let params: Parameters = [
@@ -50,7 +94,7 @@ class NetworkServices: NetworkServicesProtocol {
     
     func getLeagueEventsData(sport : SportType,leagueId: Int, from: String, to: String,timeZone : String, completion: @escaping (Result<LeagueEventsResponse, any Error>) -> Void) {
         let params: Parameters = [
-            "met"    : "Leagues",
+            "met"    : "Fixtures",
             "APIkey" : apiKey,
             "from" : from,
             "to" : to,
@@ -67,6 +111,7 @@ class NetworkServices: NetworkServicesProtocol {
                        completion(.failure(error))
                    }
                }
+        
         
     }
     

@@ -58,13 +58,14 @@ class LeagueViewController: UIViewController {
 
 extension LeagueViewController : LeaguesViewProtocol{
     func didFetchLeagues() {
+        print("✅ Events count: \(presenter?.getLeaguesCount() ?? -1)")
         DispatchQueue.main.async {
              self.tableView.reloadData()
             }
     }
     
     func didFailWithError(_ error: String) {
-        print("...")
+        print("❌ Error: \(error)")
     }
     
     func showLoading() {
@@ -107,6 +108,17 @@ extension LeagueViewController : UITableViewDelegate ,UITableViewDataSource{
         let view = UIView()
         view.backgroundColor = .clear
         return view
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let leagueDetails=storyboard?.instantiateViewController(identifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
+        
+        let league = presenter?.getLeague(at: indexPath.row)
+           leagueDetails.leagueId = league?.leagueKey
+           leagueDetails.sportType = sport
+        navigationController?.pushViewController(leagueDetails, animated: true)
+        
+        
     }
     
 }
