@@ -47,6 +47,9 @@ class PlayerTableViewCell: UITableViewCell {
         contentView.layer.shadowRadius = 5
         contentView.layer.masksToBounds = false
 
+        playerName.textColor = .white
+        playerAge.textColor = .white
+        
         // Circular player image — exact radius set in layoutSubviews
         playerLogo.clipsToBounds = true
         playerLogo.layer.cornerRadius = 20   // 40pt image → radius 20; refined in layoutSubviews
@@ -60,9 +63,9 @@ class PlayerTableViewCell: UITableViewCell {
 
     func setOutlets(_ player: Player) {
         playerName.text = player.playerName ?? "Unknown"
-        playerAge.text = player.playerAge ?? "Unknown"
+        playerAge.text = "Age: \(player.playerAge ?? "Unkown")"
         playerPosition.text = player.playerType ?? "Unknown"
-        playerNumber.text = player.playerNumber ?? "Unknown"
+        playerNumber.text = player.playerNumber ?? "0"
         if let logoString = player.playerImage, let url = URL(string: logoString) {
             playerLogo.sd_setImage(with: url, placeholderImage: UIImage(named: "person"))
         }

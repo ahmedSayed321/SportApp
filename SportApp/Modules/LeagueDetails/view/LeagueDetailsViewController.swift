@@ -220,6 +220,17 @@ extension LeagueDetailsViewController:UICollectionViewDelegate,UICollectionViewD
               let team = leagueEventPresenter?.getTeam(at: indexPath.row),
               let teamId = team.teamKey else { return }
 
+        guard sportType == .football else {
+            let alert = UIAlertController(
+                title: "No Data right now",
+                message: "Coming Soon ⏳",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            return
+        }
+
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController
         

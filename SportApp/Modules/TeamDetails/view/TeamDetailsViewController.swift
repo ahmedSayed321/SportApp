@@ -70,25 +70,21 @@ class TeamDetailsViewController: UIViewController {
     private func setupTeamImageCard() {
         guard let teamImage = teamImage else { return }
 
-        // Make image circular
+        // Remove circular shape — just scaleAspectFit
         teamImage.clipsToBounds = true
-        teamImage.contentMode = .scaleAspectFill
-        teamImage.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
+        teamImage.contentMode = .scaleAspectFit
+        teamImage.backgroundColor = .clear
+        teamImage.layer.cornerRadius = 0
 
-        // Round after layout pass so we get the real size
-        teamImage.layoutIfNeeded()
-        let radius = min(teamImage.bounds.width, teamImage.bounds.height) / 2
-        teamImage.layer.cornerRadius = radius > 0 ? radius : 40
-
-        // Green glow shadow on the superview card
+        // Style the container card
         if let container = teamImage.superview {
+            container.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
+            container.layer.cornerRadius = 16
             container.layer.shadowColor = UIColor.systemGreen.cgColor
-            container.layer.shadowOpacity = 0.6
+            container.layer.shadowOpacity = 0.4
             container.layer.shadowOffset = CGSize(width: 0, height: 4)
             container.layer.shadowRadius = 8
             container.layer.masksToBounds = false
-            container.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
-            container.layer.cornerRadius = 16
         }
     }
 
