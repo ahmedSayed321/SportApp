@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C2CE0352FAA8C4600FDA6F9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 4C2CE0342FAA8C4600FDA6F9 /* Lottie */; };
+		3EFC32FF2FABC7A300A5ADDE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3EFC32FE2FABC7A300A5ADDE /* Lottie */; };
 		4C2CE0382FAA8D5600FDA6F9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4C2CE0372FAA8D5600FDA6F9 /* Alamofire */; };
 		4C95E0EA2FAA8AEE00D5FD45 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 4C95E0E92FAA8AEE00D5FD45 /* SDWebImage */; };
 		4C95E0EC2FAA8AEE00D5FD45 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4C95E0EB2FAA8AEE00D5FD45 /* SDWebImageMapKit */; };
@@ -43,10 +43,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C2CE0352FAA8C4600FDA6F9 /* Lottie in Frameworks */,
 				4C2CE0382FAA8D5600FDA6F9 /* Alamofire in Frameworks */,
 				4C95E0EA2FAA8AEE00D5FD45 /* SDWebImage in Frameworks */,
 				4C95E0EC2FAA8AEE00D5FD45 /* SDWebImageMapKit in Frameworks */,
+				3EFC32FF2FABC7A300A5ADDE /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,8 +91,8 @@
 			packageProductDependencies = (
 				4C95E0E92FAA8AEE00D5FD45 /* SDWebImage */,
 				4C95E0EB2FAA8AEE00D5FD45 /* SDWebImageMapKit */,
-				4C2CE0342FAA8C4600FDA6F9 /* Lottie */,
 				4C2CE0372FAA8D5600FDA6F9 /* Alamofire */,
+				3EFC32FE2FABC7A300A5ADDE /* Lottie */,
 			);
 			productName = SportApp;
 			productReference = 7EA0C2B12F9F9518005BED53 /* SportApp.app */;
@@ -124,8 +124,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				4C95E0E82FAA8AEE00D5FD45 /* XCRemoteSwiftPackageReference "SDWebImage" */,
-				4C2CE0332FAA8C4600FDA6F9 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				4C2CE0362FAA8D5600FDA6F9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				3EFC32FD2FABC7A300A5ADDE /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7EA0C2B22F9F9518005BED53 /* Products */;
@@ -357,7 +357,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4C2CE0332FAA8C4600FDA6F9 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+		3EFC32FD2FABC7A300A5ADDE /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
@@ -384,9 +384,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4C2CE0342FAA8C4600FDA6F9 /* Lottie */ = {
+		3EFC32FE2FABC7A300A5ADDE /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C2CE0332FAA8C4600FDA6F9 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = 3EFC32FD2FABC7A300A5ADDE /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
 		4C2CE0372FAA8D5600FDA6F9 /* Alamofire */ = {
