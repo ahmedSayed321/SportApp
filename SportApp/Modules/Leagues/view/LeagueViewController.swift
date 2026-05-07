@@ -73,7 +73,6 @@ class LeagueViewController: UIViewController {
 
 extension LeagueViewController : LeaguesViewProtocol{
     func didFetchLeagues() {
-        print("✅ Events count: \(presenter?.getLeaguesCount() ?? -1)")
         DispatchQueue.main.async {
              self.tableView.reloadData()
             }

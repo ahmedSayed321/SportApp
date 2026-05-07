@@ -95,13 +95,11 @@ class LeagueDetailsViewController: UIViewController {
             }()
         ]
         
-        // ✅ Back button اخضر
         navigationController?.navigationBar.tintColor = UIColor(red: 144/255, green: 238/255, blue: 144/255, alpha: 1)
         
         // ✅ خط تحت الـ navbar شفاف
         appearance.shadowColor = .clear
         
-        // ✅ Bottom border بلون اخضر
         let bottomLine = UIView()
         bottomLine.backgroundColor = UIColor(red: 144/255, green: 238/255, blue: 144/255, alpha: 0.4)
         
@@ -157,9 +155,14 @@ extension LeagueDetailsViewController:UICollectionViewDelegate,UICollectionViewD
         
         return header
     }
+    
+    
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section{
         case 0:
@@ -172,8 +175,9 @@ extension LeagueDetailsViewController:UICollectionViewDelegate,UICollectionViewD
             return 0
         }
         
-        
     }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -207,9 +211,40 @@ extension LeagueDetailsViewController:UICollectionViewDelegate,UICollectionViewD
         default:
             return UICollectionViewCell()
         }
+        
+        
     }
 
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section == 2,
+              let team = leagueEventPresenter?.getTeam(at: indexPath.row),
+              let teamId = team.teamKey else { return }
+
+        guard sportType == .football else {
+            let alert = UIAlertController(
+                title: "No Data right now",
+                message: "Coming Soon ⏳",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            return
+        }
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "TeamDetailsViewController") as! TeamDetailsViewController
+        
+        let presenter = TeamDetailsPresenter(view: vc)
+            presenter.teamId = teamId
+            presenter.sport = sportType
+            presenter.teamLogo = team.teamLogo
+            presenter.teamName = team.teamName
+        
+            vc.presenter = presenter
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
     
     
     
@@ -348,7 +383,6 @@ extension LeagueDetailsViewController{
         section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 16, bottom: 16, trailing: 0)
         section.interGroupSpacing = 12
 
-        // ✅ Header للسكشن التالت
         let headerSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .absolute(44)
