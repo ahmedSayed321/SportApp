@@ -25,12 +25,13 @@ class TeamDetailsViewController: UIViewController {
         playersTableView.register(UINib(nibName: "PlayerTableViewCell", bundle: nil), forCellReuseIdentifier: "PlayerTableViewCell")
 
         // --- Dark background ---
-        view.backgroundColor = UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1)
+//        view.backgroundColor = UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1)
 
         // --- Navigation Bar Appearance ---
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1)
+        appearance.backgroundColor = .appPrimaryBackground
+        //UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1)
         appearance.titleTextAttributes = [
             .foregroundColor: UIColor.systemGreen,
             .font: UIFont.boldSystemFont(ofSize: 22)
@@ -43,7 +44,7 @@ class TeamDetailsViewController: UIViewController {
         title = teamNameText ?? "Team Details"
 
         // --- Team Name label ---
-        teamName.textColor = .white
+        //teamName.textColor = .white
 
         // --- Team Logo Card Styling ---
         setupTeamImageCard()
@@ -52,8 +53,8 @@ class TeamDetailsViewController: UIViewController {
         setupSegmentedControl()
 
         // --- Table View Styling ---
-        playersTableView.backgroundColor = .clear
-        playersTableView.separatorStyle = .none
+        //playersTableView.backgroundColor = .clear
+        //playersTableView.separatorStyle = .none
         playersTableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
 
         // --- Loading Indicator ---
@@ -78,7 +79,7 @@ class TeamDetailsViewController: UIViewController {
 
         // Style the container card
         if let container = teamImage.superview {
-            container.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
+//            container.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
             container.layer.cornerRadius = 16
             container.layer.shadowColor = UIColor.systemGreen.cgColor
             container.layer.shadowOpacity = 0.4
@@ -91,18 +92,19 @@ class TeamDetailsViewController: UIViewController {
     private func setupSegmentedControl() {
         // White text for unselected segments
         playerSegment.setTitleTextAttributes(
-            [.foregroundColor: UIColor.white,
-             .font: UIFont.systemFont(ofSize: 13, weight: .medium)],
+            [.foregroundColor: UIColor(named: "WhiteText") ?? .white,
+                .font: UIFont.systemFont(ofSize: 13, weight: .medium)
+            ],
             for: .normal
         )
         // White text for selected segment
         playerSegment.setTitleTextAttributes(
-            [.foregroundColor: UIColor.white,
+            [.foregroundColor: UIColor(named: "WhiteText") ?? .white ,
              .font: UIFont.systemFont(ofSize: 13, weight: .bold)],
             for: .selected
         )
         // Dark background tinted green on selected
-        playerSegment.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
+        playerSegment.backgroundColor = .appPrimaryBackground
         playerSegment.selectedSegmentTintColor = UIColor.systemGreen.withAlphaComponent(0.85)
 
         playerSegment.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)

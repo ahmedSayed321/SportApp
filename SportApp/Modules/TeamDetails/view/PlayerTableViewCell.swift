@@ -36,7 +36,7 @@ class PlayerTableViewCell: UITableViewCell {
         selectionStyle = .none
 
         // Dark card background
-        contentView.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
+//        contentView.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
         contentView.layer.cornerRadius = 12
         contentView.clipsToBounds = false
 
@@ -47,8 +47,8 @@ class PlayerTableViewCell: UITableViewCell {
         contentView.layer.shadowRadius = 5
         contentView.layer.masksToBounds = false
 
-        playerName.textColor = .white
-        playerAge.textColor = .white
+        //playerName.textColor = .white
+        //playerAge.textColor = .white
         
         // Circular player image — exact radius set in layoutSubviews
         playerLogo.clipsToBounds = true

@@ -24,7 +24,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         setupHeaderLabel()
         presenter = HomePresenter(view: self)
         sports = presenter.getSports()
-        view.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
+        view.backgroundColor = .appPrimaryBackground
+        //UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
         collectionView.backgroundColor = .clear
         
         let nib = UINib(nibName: "CustomCollectionViewCell", bundle: nil)
@@ -118,13 +119,13 @@ extension HomeViewController{
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "Choose Your Sport"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 26)
-        titleLabel.textColor = .white
+        titleLabel.textColor = .whiteText
         
         let subtitleLabel = UILabel()
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.text = "Live coverage, stats, and real-time news"
-        subtitleLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        subtitleLabel.textColor = UIColor.white.withAlphaComponent(0.6)
+        subtitleLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        subtitleLabel.textColor = .whiteText
         subtitleLabel.numberOfLines = 2
         
         containerView.addSubview(titleLabel)

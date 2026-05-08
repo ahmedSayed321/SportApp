@@ -15,6 +15,10 @@ class LeagueViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applyNavigationBarAppearance()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,28 +26,32 @@ class LeagueViewController: UIViewController {
         title = "Leagues"
         
         // Navigation Bar Appearance
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1)
-        appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.systemGreen,
-            .font: UIFont.boldSystemFont(ofSize: 22)
-        ]
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundColor = .appPrimaryBackground
+//        UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1)
+//        appearance.titleTextAttributes = [
+//            .foregroundColor: UIColor.systemGreen,
+//            .font: UIFont.boldSystemFont(ofSize: 22)
+//        ]
+//        
+//        navigationController?.navigationBar.standardAppearance = appearance
+//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+//        navigationController?.navigationBar.compactAppearance = appearance
+//        navigationController?.navigationBar.tintColor = .systemGreen
         
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
-        navigationController?.navigationBar.tintColor = .systemGreen
+        applyNavigationBarAppearance()
         
         searchBar.delegate = self
-        searchBar.searchTextField.textColor = .white
-        searchBar.searchTextField.leftView?.tintColor = .white
+        searchBar.searchTextField.textColor = .whiteText
+        searchBar.searchTextField.leftView?.tintColor = .whiteText
         
         indicator.center = view.center
-        indicator.color = .white
+        indicator.color = .shadow
         view.addSubview(indicator)
         
-        view.backgroundColor = UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1)
+        view.backgroundColor = .appPrimaryBackground
+        //UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1)
             tableView.backgroundColor = .clear
             tableView.separatorStyle = .none
             tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
@@ -88,6 +96,21 @@ extension LeagueViewController : LeaguesViewProtocol{
     
     func hideLoading() {
         stopLoading()
+    }
+    
+    private func applyNavigationBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .appPrimaryBackground
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.systemGreen,
+            .font: UIFont.boldSystemFont(ofSize: 22)
+        ]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationController?.navigationBar.tintColor = .systemGreen
     }
 }
 
@@ -140,6 +163,7 @@ extension LeagueViewController : UITableViewDelegate ,UITableViewDataSource{
         
         
     }
+    
     
 }
 
