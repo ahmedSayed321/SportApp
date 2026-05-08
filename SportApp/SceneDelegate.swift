@@ -38,6 +38,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = splashVC
         window?.backgroundColor = .systemBackground
+        
+        // Apply saved theme preference or default to dark
+        let isDark = UserDefaults.standard.object(forKey: "AppThemePreference") as? Bool ?? true
+        window?.overrideUserInterfaceStyle = isDark ? .dark : .light
+        
         window?.makeKeyAndVisible()
     }
 

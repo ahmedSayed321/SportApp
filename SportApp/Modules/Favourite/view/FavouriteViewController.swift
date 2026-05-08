@@ -39,12 +39,14 @@ class FavouriteViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         applyNavigationBarAppearance()
-        favPresenter.filterLeagues(with: "")
+        favPresenter.refreshLeagues()
+        favPresenter.filterLeagues(with: searchBar.text ?? "")
         favsTable.reloadData()
     }
 
     private func applyNavigationBarAppearance() {
-        title = "Favourites"
+        self.tabBarController?.title = "Favourites"
+        self.tabBarController?.navigationItem.leftBarButtonItem = nil
 
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()

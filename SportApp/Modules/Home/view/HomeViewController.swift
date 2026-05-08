@@ -117,7 +117,8 @@ extension HomeViewController{
         stackView.spacing = 6
         stackView.alignment = .center
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: stackView)
+        self.tabBarController?.title = nil
+        self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: stackView)
     }
     private func setupHeaderLabel() {
         let containerView = UIView()

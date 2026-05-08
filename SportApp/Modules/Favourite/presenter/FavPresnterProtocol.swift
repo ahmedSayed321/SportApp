@@ -13,4 +13,5 @@ protocol FavPresnterProtocol{
     func getLeagueAt(index:Int,sport:SportType)->League?
     var sport: SportType? { get }
     func filterLeagues(with searchText: String)
+    func refreshLeagues()
 }

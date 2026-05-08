@@ -30,6 +30,11 @@ class FavPresenter: FavPresnterProtocol {
         }
     }
 
+    func refreshLeagues() {
+            self.leagues = localDataSource.getFavouriteLeague()
+            self.filteredLeagues = self.leagues
+        }
+
     func getFavsCount() -> Int? {
         return filteredLeagues.count
     }
