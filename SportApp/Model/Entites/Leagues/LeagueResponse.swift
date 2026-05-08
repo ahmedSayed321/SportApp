@@ -21,6 +21,7 @@ struct League: Codable {
     let countryLogo: String?
     let leagueYear: String?
     let leagueSurface: String?
+    var sportType:    SportType?
     
     
     enum CodingKeys: String, CodingKey {

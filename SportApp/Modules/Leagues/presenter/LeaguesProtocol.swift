@@ -12,6 +12,7 @@ protocol LeaguesPresenterProtocol: AnyObject {
     func getLeaguesCount() -> Int
     func getLeague(at index: Int) -> League
     func filterLeagues(with query: String)
+    func addLeagueToFav(league:League?,sport:SportType)
     
 }
 

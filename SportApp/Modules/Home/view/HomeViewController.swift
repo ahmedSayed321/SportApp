@@ -1,6 +1,7 @@
 
 
 import UIKit
+import CoreData
 
 protocol HomeViewProtocol: AnyObject {}
 
@@ -10,9 +11,15 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     
     var presenter: HomePresenterProtocol!
     var sports: [SportType] = []
+    var appdel:AppDelegate!
+    var localDataSource:LocalDataSoucreProtocol!
+    var appCxt:NSManagedObjectContext!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.appdel=UIApplication.shared.delegate as? AppDelegate
+        self.appCxt=self.appdel.persistentContainer.viewContext
+        localDataSource=LocalDataSource(cxt: appCxt)
         setupNavigationBar()
         setupHeaderLabel()
         presenter = HomePresenter(view: self)
@@ -24,6 +31,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(nib, forCellWithReuseIdentifier: "teamAndHomeCell")
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -66,7 +74,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             let leagueVC = storyboard.instantiateViewController(withIdentifier: "LeagueViewController") as! LeagueViewController
             
             leagueVC.sport = sport
-            leagueVC.presenter = LeaguesPresenter(view: leagueVC)
+            leagueVC.presenter = LeaguesPresenter(view: leagueVC,localDataSource: localDataSource)
             
             navigationController?.pushViewController(leagueVC, animated: true)
         print("Selected: \(sport.displayName)")

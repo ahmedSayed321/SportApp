@@ -10,13 +10,38 @@ class CustomLeagueTableViewCell: UITableViewCell {
     @IBOutlet weak var favButton: UIButton!
     private var isFavourite = false {
         didSet {
-            favButton.tintColor = isFavourite ? .yellow : .white
+            favButton.tintColor = isFavourite ? .systemGreen : .white
         }
     }
+    var isFavBtnClickedAtIndex:(()->Void)?
     
 
     @IBAction func favBtn(_ sender: Any) {
         isFavourite.toggle()
+        isFavBtnClickedAtIndex?()
+        if isFavourite {
+            favButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+               UIView.animate(withDuration: 0.1, animations: {
+                   self.favButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                   self.favButton.tintColor = .systemGreen
+               }) { _ in
+                   UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.8) {
+                       self.favButton.transform = .identity
+                   }
+               }
+            
+           } else {
+               favButton.setImage(UIImage(systemName: "star"), for: .normal)
+               UIView.animate(withDuration: 0.1, animations: {
+                   self.favButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+                   self.favButton.tintColor = .white
+               }) { _ in
+                   UIView.animate(withDuration: 0.2) {
+                       self.favButton.transform = .identity
+                   }
+               }
+           }
+       
 
     }
 
