@@ -10,15 +10,19 @@ import Foundation
 
 class LeaguesPresenter: LeaguesPresenterProtocol {
     
+    
+    
     weak var view: LeaguesViewProtocol?
     private var leagues: [League] = []
     private let network: NetworkServicesProtocol
+    private let localDataSource:LocalDataSoucreProtocol
     private var filteredLeagues: [League] = []
     private var isSearching: Bool = false
     
-    init(view: LeaguesViewProtocol, network: NetworkServicesProtocol = NetworkServices.instanse) {
+    init(view: LeaguesViewProtocol, network: NetworkServicesProtocol = NetworkServices.instanse,localDataSource:LocalDataSoucreProtocol) {
         self.view = view
         self.network = network
+        self.localDataSource=localDataSource
     }
     
     func fetchLeagues(for sport: SportType) {
@@ -58,4 +62,9 @@ class LeaguesPresenter: LeaguesPresenterProtocol {
     func getLeaguesCount() -> Int   { return isSearching ? filteredLeagues.count : leagues.count }
     
     func getLeague(at index: Int) -> League { return isSearching ? filteredLeagues[index] : leagues[index] }
+    
+    func addLeagueToFav(league: League?,sport:SportType) {
+        print("added to fav from leagues pres")
+        localDataSource.addLeagueToFav(league: league!,sport: sport)
+    }
 }

@@ -104,6 +104,11 @@ extension LeagueViewController : UITableViewDelegate ,UITableViewDataSource{
         
         if let league = presenter?.getLeague(at: indexPath.row) {
             cell.setOutlets(league, sport: sport!)
+            cell.isFavBtnClickedAtIndex={[weak self] in
+                print("User clicked on league at index: \(indexPath.row)")
+                
+                self?.presenter?.addLeagueToFav(league: (self?.presenter?.getLeague(at: indexPath.row)), sport: self?.sport ?? .football)
+            }
         }
 
         
@@ -124,10 +129,11 @@ extension LeagueViewController : UITableViewDelegate ,UITableViewDataSource{
         return view
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+       
         let leagueDetails=storyboard?.instantiateViewController(identifier: "LeagueDetailsViewController") as! LeagueDetailsViewController
         
         let league = presenter?.getLeague(at: indexPath.row)
+        
            leagueDetails.leagueId = league?.leagueKey
            leagueDetails.sportType = sport
         navigationController?.pushViewController(leagueDetails, animated: true)
@@ -153,3 +159,4 @@ extension LeagueViewController: UISearchBarDelegate {
         searchBar.becomeFirstResponder()
     }
 }
+
