@@ -10,7 +10,7 @@ class CustomLeagueTableViewCell: UITableViewCell {
     @IBOutlet weak var favButton: UIButton!
     private var isFavourite = false {
         didSet {
-            favButton.tintColor = isFavourite ? .yellow : .white
+            favButton.tintColor = isFavourite ? .yellow : .whiteText
         }
     }
     
@@ -61,7 +61,7 @@ extension CustomLeagueTableViewCell {
         backgroundColor = .clear
         selectionStyle = .none
 
-        contentView.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
+//        contentView.backgroundColor = UIColor(red: 0.13, green: 0.15, blue: 0.22, alpha: 1)
         contentView.layer.cornerRadius = 12
         contentView.clipsToBounds = false
         

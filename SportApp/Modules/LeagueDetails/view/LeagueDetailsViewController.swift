@@ -21,10 +21,12 @@ class LeagueDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
-        collectionView.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
+        view.backgroundColor = .appPrimaryBackground
+        //UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
+        collectionView.backgroundColor = .appPrimaryBackground
+        //UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
         indicator.center = view.center
-        indicator.color = .white
+        indicator.color = .shadow
         view.addSubview(indicator)
         leagueEventPresenter = LeagueDetailsPresenter(view: self)
         if let id = leagueId, let sport = sportType {
@@ -80,8 +82,9 @@ class LeagueDetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         
         let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
+        //appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .appPrimaryBackground
+        //UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
         
         // ✅ Custom Font + Color + Shadow
         appearance.titleTextAttributes = [
@@ -429,7 +432,8 @@ class SectionHeaderView: UICollectionReusableView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 25)
-        label.textColor = UIColor(red: 144/255, green: 238/255, blue: 144/255, alpha: 1) // Light Green
+        label.textColor = .shadow
+        //UIColor(red: 144/255, green: 238/255, blue: 144/255, alpha: 1) // Light Green
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
