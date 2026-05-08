@@ -7,37 +7,46 @@
 
 import Foundation
 import CoreData
-class FavPresenter:FavPresnterProtocol{
+
+class FavPresenter: FavPresnterProtocol {
     let localDataSource: LocalDataSoucreProtocol!
     private var leagues: [League] = []
-    var sport:SportType?
+    private var filteredLeagues: [League] = []
+    var sport: SportType?
+    
     init(localDataSource: LocalDataSoucreProtocol) {
         self.localDataSource = localDataSource
         self.leagues = localDataSource.getFavouriteLeague()
+        self.filteredLeagues = self.leagues
     }
-        
-        
-        func deleteLeagueFromFav(leagueKey: Int) {
-            localDataSource.deleteLeagueFromFav(leagueKey: leagueKey)
-            self.leagues = localDataSource.getFavouriteLeague()
+
+    func filterLeagues(with searchText: String) {
+        if searchText.isEmpty {
+            filteredLeagues = leagues
+        } else {
+            filteredLeagues = leagues.filter {
+                $0.leagueName.lowercased().contains(searchText.lowercased()) ?? false
+            }
         }
-        func getFavouriteLeague() -> [League] {
-            return localDataSource.getFavouriteLeague()
-        }
-        func getFavsCount() -> Int? {
-            return localDataSource.getFavouriteLeague().count
-        }
-        func getLeagueAt(index: Int,sport:SportType) -> League? {
-            let leagues = localDataSource.getFavouriteLeague()
-            guard index < leagues.count else { return nil }
-            return leagues[index]
-            
-        }
-       
-        
-        
-        
-        
-        
+    }
+
+    func getFavsCount() -> Int? {
+        return filteredLeagues.count
+    }
+
+    func getLeagueAt(index: Int, sport: SportType) -> League? {
+        guard index < filteredLeagues.count else { return nil }
+        return filteredLeagues[index]
+    }
+
+    func deleteLeagueFromFav(leagueKey: Int) {
+        localDataSource.deleteLeagueFromFav(leagueKey: leagueKey)
+        self.leagues = localDataSource.getFavouriteLeague()
+        self.filteredLeagues = self.leagues
+    }
+
+    func getFavouriteLeague() -> [League] {
+        return filteredLeagues
+    }
 }
 

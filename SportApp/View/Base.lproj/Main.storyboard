@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r99-De-FFL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="r99-De-FFL">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -116,7 +116,6 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="VaT-O0-RHC">
                                 <rect key="frame" x="0.0" y="256" width="375" height="533"/>
-
                                 <color key="backgroundColor" name="AppPrimaryBackground"/>
                                 <color key="sectionIndexBackgroundColor" name="AppPrimaryBackground"/>
                                 <connections>
@@ -200,10 +199,10 @@
                                 <color key="tintColor" name="Shadow"/>
                                 <color key="barTintColor" name="CustomCell"/>
                                 <textInputTraits key="textInputTraits"/>
-                                </searchBar>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="leQ-Gv-HaM">
-                                    <rect key="frame" x="0.0" y="156" width="375" height="588"/>
-                                    <color key="backgroundColor" name="AppPrimaryBackground"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="leQ-Gv-HaM">
+                                <rect key="frame" x="0.0" y="156" width="375" height="588"/>
+                                <color key="backgroundColor" name="AppPrimaryBackground"/>
                                 <connections>
                                     <outlet property="dataSource" destination="dt4-rb-NCs" id="M69-IE-oLa"/>
                                     <outlet property="delegate" destination="dt4-rb-NCs" id="UPr-bf-dgU"/>
@@ -291,14 +290,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" barStyle="blackTranslucent" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="RBh-7f-MZG">
-                                <rect key="frame" x="0.0" y="154" width="375" height="64"/>
+                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="RBh-7f-MZG">
+                                <rect key="frame" x="0.0" y="144" width="375" height="56"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" red="0.1019607843" green="0.1019607843" blue="0.18039215689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" name="CustomCell"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IOe-uf-Dod">
-                                <rect key="frame" x="0.0" y="238" width="375" height="457"/>
+                                <rect key="frame" x="0.0" y="220" width="375" height="475"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="tintColor" systemColor="systemYellowColor"/>
                                 <connections>
@@ -308,7 +307,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9YN-MJ-CZ8"/>
-                        <color key="backgroundColor" red="0.042279927000000002" green="0.0083577691030000002" blue="0.1549076844" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="AppPrimaryBackground"/>
                         <constraints>
                             <constraint firstItem="9YN-MJ-CZ8" firstAttribute="bottom" secondItem="IOe-uf-Dod" secondAttribute="bottom" id="CXs-O9-U0i"/>
                             <constraint firstItem="IOe-uf-Dod" firstAttribute="leading" secondItem="9YN-MJ-CZ8" secondAttribute="leading" id="FEC-ai-mZG"/>
@@ -336,7 +335,6 @@
                     <tabBarItem key="tabBarItem" title="Item" id="MgO-xN-Lrh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UN1-Cp-QyE">
-
                         <rect key="frame" x="0.0" y="100" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" systemColor="systemGreenColor"/>

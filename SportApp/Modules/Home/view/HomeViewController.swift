@@ -25,7 +25,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         presenter = HomePresenter(view: self)
         sports = presenter.getSports()
         view.backgroundColor = .appPrimaryBackground
-        //UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
         collectionView.backgroundColor = .clear
         
         let nib = UINib(nibName: "CustomCollectionViewCell", bundle: nil)
@@ -33,6 +32,11 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.delegate = self
         collectionView.register(nib, forCellWithReuseIdentifier: "teamAndHomeCell")
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar()
     }
     
     override func viewDidLayoutSubviews() {
@@ -85,11 +89,16 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
 }
 extension HomeViewController{
+    
     private func setupNavigationBar() {
         let green = UIColor(red: 0/255, green: 200/255, blue: 83/255, alpha: 1)
         let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .appPrimaryBackground
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance  
+
         let titleLabel = UILabel()
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: green,
