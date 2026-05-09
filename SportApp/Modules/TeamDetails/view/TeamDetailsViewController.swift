@@ -41,7 +41,7 @@ class TeamDetailsViewController: UIViewController {
         navigationController?.navigationBar.compactAppearance = appearance
         navigationController?.navigationBar.tintColor = .systemGreen
 
-        title = teamNameText ?? "Team Details"
+        title = "team_details".localized
 
         // --- Team Name label ---
         //teamName.textColor = .white
