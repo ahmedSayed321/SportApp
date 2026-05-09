@@ -53,4 +53,13 @@ enum SportType: String {
        static var allSports: [SportType] {
            return [.football, .basketball, .cricket, .tennis]
        }
+    
+    var localizedName: String {
+        switch self {
+        case .football:   return "sport_football".localized
+        case .basketball: return "sport_basketball".localized
+        case .cricket:    return "sport_cricket".localized
+        case .tennis:     return "sport_tennis".localized
+        }
+    }
 }

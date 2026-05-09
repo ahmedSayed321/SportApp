@@ -22,9 +22,7 @@ class LeagueDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .appPrimaryBackground
-        //UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
         collectionView.backgroundColor = .appPrimaryBackground
-        //UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
         indicator.center = view.center
         indicator.color = .shadow
         view.addSubview(indicator)
@@ -47,7 +45,7 @@ class LeagueDetailsViewController: UIViewController {
                 eventType: .latest
             )
             leagueEventPresenter?.fetchTeams(leagueId: id, sport: sport, eventType: .teams)
-            self.title=sport.displayName
+            self.title=sport.localizedName 
            
                }
         collectionView.delegate = self
@@ -82,11 +80,8 @@ class LeagueDetailsViewController: UIViewController {
         super.viewWillAppear(animated)
         
         let appearance = UINavigationBarAppearance()
-        //appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .appPrimaryBackground
-        //UIColor(red: 26/255, green: 26/255, blue: 46/255, alpha: 1)
         
-        // ✅ Custom Font + Color + Shadow
         appearance.titleTextAttributes = [
             .foregroundColor: UIColor(red: 144/255, green: 238/255, blue: 144/255, alpha: 1),
             .font: UIFont.boldSystemFont(ofSize: 22),
@@ -100,7 +95,6 @@ class LeagueDetailsViewController: UIViewController {
         
         navigationController?.navigationBar.tintColor = UIColor(red: 144/255, green: 238/255, blue: 144/255, alpha: 1)
         
-        // ✅ خط تحت الـ navbar شفاف
         appearance.shadowColor = .clear
         
         let bottomLine = UIView()
@@ -150,9 +144,9 @@ extension LeagueDetailsViewController:UICollectionViewDelegate,UICollectionViewD
             for: indexPath) as! SectionHeaderView
         
         switch indexPath.section {
-        case 0: header.configure(title: "Upcoming Events")
-        case 1: header.configure(title: "Latest Events")
-        case 2: header.configure(title: "Teams")
+        case 0: header.configure(title: "upcoming_events".localized)
+        case 1: header.configure(title: "latest_events".localized)
+        case 2: header.configure(title: "teams".localized)
         default: break
         }
         
@@ -225,11 +219,11 @@ extension LeagueDetailsViewController:UICollectionViewDelegate,UICollectionViewD
 
         guard sportType == .football else {
             let alert = UIAlertController(
-                title: "No Data right now",
-                message: "Coming Soon ⏳",
+                title: "no_data".localized,
+                message: "coming_soon".localized,
                 preferredStyle: .alert
             )
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            alert.addAction(UIAlertAction(title: "ok".localized, style: .default))
             present(alert, animated: true)
             return
         }
@@ -433,7 +427,6 @@ class SectionHeaderView: UICollectionReusableView {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 25)
         label.textColor = .shadow
-        //UIColor(red: 144/255, green: 238/255, blue: 144/255, alpha: 1) // Light Green
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

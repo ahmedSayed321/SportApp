@@ -10,6 +10,12 @@ import UIKit
 class SettingsViewController: UIViewController, SettingsViewProtocol {
 
     @IBOutlet weak var themeSwitch: UISwitch!
+    
+    @IBOutlet weak var darkModeLabel: UILabel!
+    
+    
+    @IBOutlet weak var langLabel: UILabel!
+    
     var presenter: SettingsPresenterProtocol!
 
     override func viewDidLoad() {
@@ -22,10 +28,13 @@ class SettingsViewController: UIViewController, SettingsViewProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         applyNavigationBarAppearance()
+        darkModeLabel.text="dark_mode".localized
+        langLabel.text="lang".localized
+        
     }
 
     private func applyNavigationBarAppearance() {
-        self.tabBarController?.title = "Settings"
+        self.tabBarController?.navigationItem.title = "setting_tab".localized
         self.tabBarController?.navigationItem.leftBarButtonItem = nil
 
         let appearance = UINavigationBarAppearance()
@@ -47,6 +56,23 @@ class SettingsViewController: UIViewController, SettingsViewProtocol {
     }
 
     @IBAction func languageModeSwitch(_ sender: Any) {
+        let current = LanguageManager.shared.currentLanguage
+           let newLanguage = current == "en" ? "ar" : "en"
+           
+           let alert = UIAlertController(
+               title: newLanguage == "ar" ? "تغيير اللغة" : "Change Language",
+               message: newLanguage == "ar" ? "سيتم إعادة تشغيل التطبيق" : "App will restart",
+               preferredStyle: .alert
+           )
+           
+           alert.addAction(UIAlertAction(title: newLanguage == "ar" ? "موافق" : "OK", style: .default) { _ in
+               LanguageManager.shared.setLanguage(newLanguage)
+               LanguageManager.shared.restartApp()
+           })
+           
+           alert.addAction(UIAlertAction(title: newLanguage == "ar" ? "إلغاء" : "Cancel", style: .cancel))
+           
+           present(alert, animated: true)
     }
     
     func updateTheme(isDark: Bool, animated: Bool) {
@@ -55,17 +81,14 @@ class SettingsViewController: UIViewController, SettingsViewProtocol {
             themeSwitch.isOn = isDark
         }
         
-        // Apply theme to all windows
         if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             windowScene.windows.forEach { window in
                 if animated {
-                    // Book page turn animation
                     let transitionOption: UIView.AnimationOptions = isDark ? .transitionFlipFromRight : .transitionFlipFromLeft
                     UIView.transition(with: window, duration: 0.6, options: transitionOption, animations: {
                         window.overrideUserInterfaceStyle = isDark ? .dark : .light
                     }, completion: nil)
                 } else {
-                    // Instant change without animation when just loading the view
                     window.overrideUserInterfaceStyle = isDark ? .dark : .light
                 }
             }

@@ -13,7 +13,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
+           
+           window = UIWindow(windowScene: windowScene)
+           
+           // ✅ Apply language direction BEFORE anything renders
+           let savedLanguage = UserDefaults.standard.string(forKey: "AppLanguage") ?? "en"
+           UserDefaults.standard.set([savedLanguage], forKey: "AppleLanguages")
+           
+           let direction: UISemanticContentAttribute = (savedLanguage == "ar") ? .forceRightToLeft : .forceLeftToRight
+           UIView.appearance().semanticContentAttribute = direction
+           UITabBar.appearance().semanticContentAttribute = direction
+           UINavigationBar.appearance().semanticContentAttribute = direction
+           window?.semanticContentAttribute = direction  // ✅ ع
 
         // Show the animated Splash screen first
         let splashVC = SplashViewController()
@@ -44,6 +57,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.overrideUserInterfaceStyle = isDark ? .dark : .light
         
         window?.makeKeyAndVisible()
+        if let savedLanguage = UserDefaults.standard.string(forKey: "AppLanguage") {
+                UserDefaults.standard.set([savedLanguage], forKey: "AppleLanguages")
+            }
+            
+            guard let _ = (scene as? UIWindowScene) else { return }
+        
+        
     }
 
     private func setRootViewController(_ viewController: UIViewController, animated: Bool) {

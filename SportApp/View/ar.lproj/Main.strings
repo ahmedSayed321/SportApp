@@ -1,0 +1,38 @@
+/* Class = "UILabel"; text = "HomeViewController"; ObjectID = "1Ep-uZ-cmF"; */
+"1Ep-uZ-cmF.text" = "الصفحة الرئيسية";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3Tg-89-dgw"; */
+"3Tg-89-dgw.text" = "تسمية";
+
+/* Class = "UILabel"; text = "Dark Mode :"; ObjectID = "Jvs-h0-uUc"; */
+"Jvs-h0-uUc.text" = "الوضع الداكن :";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "MgO-xN-Lrh"; */
+"MgO-xN-Lrh.title" = "عنصر";
+
+/* Class = "UISearchBar"; placeholder = "Search"; ObjectID = "RBh-7f-MZG"; */
+"RBh-7f-MZG.placeholder" = "بحث";
+
+/* Class = "UISegmentedControl"; Stk-39-Uct.segmentTitles[0] = "All"; ObjectID = "Stk-39-Uct"; */
+"Stk-39-Uct.segmentTitles[0]" = "الكل";
+
+/* Class = "UISegmentedControl"; Stk-39-Uct.segmentTitles[1] = "GoalKeepers"; ObjectID = "Stk-39-Uct"; */
+"Stk-39-Uct.segmentTitles[1]" = "حراس المرمى";
+
+/* Class = "UISegmentedControl"; Stk-39-Uct.segmentTitles[2] = "Defenders"; ObjectID = "Stk-39-Uct"; */
+"Stk-39-Uct.segmentTitles[2]" = "المدافعون";
+
+/* Class = "UISegmentedControl"; Stk-39-Uct.segmentTitles[3] = "Midfilders"; ObjectID = "Stk-39-Uct"; */
+"Stk-39-Uct.segmentTitles[3]" = "لاعبو الوسط";
+
+/* Class = "UISegmentedControl"; Stk-39-Uct.segmentTitles[4] = "Forwards"; ObjectID = "Stk-39-Uct"; */
+"Stk-39-Uct.segmentTitles[4]" = "المهاجمون";
+
+/* Class = "UILabel"; text = "English :"; ObjectID = "cIN-aq-5vO"; */
+"cIN-aq-5vO.text" = "الإنجليزية :";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "dj4-sb-f6x"; */
+"dj4-sb-f6x.title" = "الإعدادات";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "fpv-Hw-3rQ"; */
+"fpv-Hw-3rQ.title" = "الرئيسية";

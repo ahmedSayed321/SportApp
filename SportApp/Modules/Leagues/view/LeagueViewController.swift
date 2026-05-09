@@ -23,22 +23,7 @@ class LeagueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Leagues"
-        
-        // Navigation Bar Appearance
-//        let appearance = UINavigationBarAppearance()
-//        appearance.configureWithOpaqueBackground()
-//        appearance.backgroundColor = .appPrimaryBackground
-//        UIColor(red: 0.08, green: 0.10, blue: 0.16, alpha: 1)
-//        appearance.titleTextAttributes = [
-//            .foregroundColor: UIColor.systemGreen,
-//            .font: UIFont.boldSystemFont(ofSize: 22)
-//        ]
-//        
-//        navigationController?.navigationBar.standardAppearance = appearance
-//        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-//        navigationController?.navigationBar.compactAppearance = appearance
-//        navigationController?.navigationBar.tintColor = .systemGreen
+        title = "leagues".localized
         
         applyNavigationBarAppearance()
         
