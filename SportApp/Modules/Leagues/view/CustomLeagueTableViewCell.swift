@@ -8,42 +8,44 @@ class CustomLeagueTableViewCell: UITableViewCell {
     @IBOutlet weak var leagueName: UILabel!
 
     @IBOutlet weak var favButton: UIButton!
-    private var isFavourite = false {
-        didSet {
-
-            favButton.tintColor = isFavourite ? .yellow : .whiteText
-        }
+    private var isFavourite = false
+    /// Called by the VC on every dequeue to stamp the correct state onto a recycled cell.
+    func setFavouriteState(_ isFav: Bool) {
+        isFavourite = isFav
+        let imageName = isFav ? "star.fill" : "star"
+        favButton.setImage(UIImage(systemName: imageName), for: .normal)
+        favButton.tintColor = isFav ? .systemGreen : .whiteText
     }
-    var isFavBtnClickedAtIndex:(()->Void)?
-    
+
+    var isFavBtnClickedAtIndex: ((_ currentlyFav: Bool) -> Void)?
 
     @IBAction func favBtn(_ sender: Any) {
+        // Toggle local state immediately for snappy UI feedback
         isFavourite.toggle()
-        isFavBtnClickedAtIndex?()
+        // Animate the new state
         if isFavourite {
             favButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-               UIView.animate(withDuration: 0.1, animations: {
-                   self.favButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-                   self.favButton.tintColor = .systemRed
-               }) { _ in
-                   UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.8) {
-                       self.favButton.transform = .identity
-                   }
-               }
-            
-           } else {
-               favButton.setImage(UIImage(systemName: "star"), for: .normal)
-               UIView.animate(withDuration: 0.1, animations: {
-                   self.favButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
-                   self.favButton.tintColor = .whiteText
-               }) { _ in
-                   UIView.animate(withDuration: 0.2) {
-                       self.favButton.transform = .identity
-                   }
-               }
-           }
-       
-
+            UIView.animate(withDuration: 0.1, animations: {
+                self.favButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.favButton.tintColor = .systemGreen
+            }) { _ in
+                UIView.animate(withDuration: 0.2, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.8) {
+                    self.favButton.transform = .identity
+                }
+            }
+        } else {
+            favButton.setImage(UIImage(systemName: "star"), for: .normal)
+            UIView.animate(withDuration: 0.1, animations: {
+                self.favButton.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+                self.favButton.tintColor = .whiteText
+            }) { _ in
+                UIView.animate(withDuration: 0.2) {
+                    self.favButton.transform = .identity
+                }
+            }
+        }
+        // Notify the VC whether the league is NOW a favourite (after toggle)
+        isFavBtnClickedAtIndex?(isFavourite)
     }
 
    

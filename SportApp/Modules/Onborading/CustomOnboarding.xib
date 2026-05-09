@@ -27,7 +27,8 @@
                     <rect key="frame" x="17" y="761.66666666666663" width="358" height="38.333333333333371"/>
                     <color key="tintColor" red="0.0" green="0.78431372549019607" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title="Button" cornerStyle="capsule"/>
+                 <buttonConfiguration key="configuration" style="filled" title="Button" cornerStyle="capsule" baseBackgroundColor="#00C853"/>
+
                     <connections>
                         <action selector="onBoardingBtn:" destination="-1" eventType="touchUpInside" id="Pd8-dP-2cp"/>
                     </connections>

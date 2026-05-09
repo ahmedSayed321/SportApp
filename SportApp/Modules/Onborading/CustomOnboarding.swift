@@ -42,6 +42,8 @@ class CustomOnboarding: UIView {
         onBoradingImage.image = UIImage(named: item.image) ?? UIImage(systemName: "sportscourt")
         let buttonTitle = isLastPage ? "Get Started" : "Next"
         onBoardingButton?.setTitle(buttonTitle, for: .normal)
+       
+        
     }
 }
 

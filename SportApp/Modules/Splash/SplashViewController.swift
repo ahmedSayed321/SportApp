@@ -13,7 +13,7 @@ class SplashViewController: UIViewController {
     // MARK: - UI Elements
 
     private let animationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: "football")
+        let view = LottieAnimationView(name: "sports")
         view.contentMode = .scaleAspectFit
         view.loopMode = .playOnce
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -84,21 +84,23 @@ class SplashViewController: UIViewController {
     // MARK: - Animations
 
     private func runSplashAnimation() {
-        // Start: image is shifted upward and fully transparent
         animationView.transform = CGAffineTransform(translationX: 0, y: -view.bounds.height)
         animationView.alpha = 0
 
-        // Fade in while drifting down to its final position
         UIView.animate(
             withDuration: 1.1,
             delay: 0.0,
             options: .curveEaseOut
         ) {
-            self.animationView.transform = .identity   // drifts back to center
-            self.animationView.alpha = 1               // fades in
+            self.animationView.transform = .identity
+            self.animationView.alpha = 1
         } completion: { _ in
-            // Step 2: Netflix-style text reveal after logo settles
-            self.animateNetflixText()
+            // Start the Lottie animation after logo settles
+            self.animationView.play { finished in
+                guard finished else { return }
+                // Step 2: Netflix-style text reveal after Lottie finishes
+                self.animateNetflixText()
+            }
         }
     }
 

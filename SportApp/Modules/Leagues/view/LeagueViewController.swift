@@ -123,18 +123,26 @@ extension LeagueViewController : UITableViewDelegate ,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomLeagueTableViewCell", for: indexPath) as! CustomLeagueTableViewCell
-        
-        
+
         if let league = presenter?.getLeague(at: indexPath.row) {
             cell.setOutlets(league, sport: sport!)
-            cell.isFavBtnClickedAtIndex={[weak self] in
-                print("User clicked on league at index: \(indexPath.row)")
-                
-                self?.presenter?.addLeagueToFav(league: (self?.presenter?.getLeague(at: indexPath.row)), sport: self?.sport ?? .football)
+
+            // ✅ Fix: stamp the correct Core Data state on every dequeue to prevent reuse glitch
+            let isFav = presenter?.isLeagueFavourite(leagueKey: league.leagueKey) ?? false
+            cell.setFavouriteState(isFav)
+
+            cell.isFavBtnClickedAtIndex = { [weak self] nowFavourite in
+                guard let self = self,
+                      let league = self.presenter?.getLeague(at: indexPath.row) else { return }
+
+                if nowFavourite {
+                    self.presenter?.addLeagueToFav(league: league, sport: self.sport ?? .football)
+                } else {
+                    self.presenter?.removeLeagueFromFav(leagueKey: league.leagueKey)
+                }
             }
         }
 
-        
         return cell
     }
     
