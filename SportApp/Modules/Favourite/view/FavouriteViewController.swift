@@ -38,14 +38,16 @@ class FavouriteViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        searchBar.placeholder = "search".localized
         applyNavigationBarAppearance()
         favPresenter.refreshLeagues()
         favPresenter.filterLeagues(with: searchBar.text ?? "")
         favsTable.reloadData()
+        
     }
 
     private func applyNavigationBarAppearance() {
-        self.tabBarController?.title = "Favourites"
+        self.tabBarController?.navigationItem.title = "favourite_tab".localized  
         self.tabBarController?.navigationItem.leftBarButtonItem = nil
 
         let appearance = UINavigationBarAppearance()

@@ -8,6 +8,8 @@ protocol HomeViewProtocol: AnyObject {}
 class HomeViewController: UIViewController, HomeViewProtocol {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    private let titleLabel = UILabel()
+    private let subtitleLabel = UILabel()
     
     var presenter: HomePresenterProtocol!
     var sports: [SportType] = []
@@ -31,12 +33,15 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(nib, forCellWithReuseIdentifier: "teamAndHomeCell")
+        titleLabel.text = "choose_your_sport".localized
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavigationBar()
+        self.tabBarController?.navigationItem.title = nil
+            setupNavigationBar()
+     
     }
     
     override func viewDidLayoutSubviews() {
@@ -52,6 +57,20 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         layout.sectionInset = UIEdgeInsets(top: 20, left: spacing, bottom: 20, right: spacing)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+       
+            
+        guard let tabBar = self.tabBarController?.tabBar,
+              let items = tabBar.items else { return }
+        
+        items[0].title = "home_tab".localized
+        items[1].title = "favourite_tab".localized
+        items[2].title = "setting_tab".localized
+        
+        tabBar.subviews.forEach { $0.setNeedsLayout(); $0.layoutIfNeeded() }
+        
+    }
     
     
     
@@ -66,7 +85,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "teamAndHomeCell", for: indexPath) as! HomeCollectionViewCell
         let sport = sports[indexPath.item]
-        cell.sportName.text = sport.displayName
+        cell.sportName.text = sport.localizedName
         cell.img.image = UIImage(named: sport.imageName)
         cell.setCornerRadius(for: sport)
         return cell
@@ -88,6 +107,12 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     
 }
+extension HomeViewController {
+    func updateUIStrings() {
+        titleLabel.text = "choose_your_sport".localized
+        subtitleLabel.text = "live_coverage_stats_and_real_time_news".localized
+    }
+}
 extension HomeViewController{
     
     private func setupNavigationBar() {
@@ -104,7 +129,8 @@ extension HomeViewController{
             .foregroundColor: green,
             .kern: -1.0
         ]
-        titleLabel.attributedText = NSAttributedString(string: "Remontada", attributes: attributes)
+        let translatedTitle = "remontada".localized
+        titleLabel.attributedText = NSAttributedString(string: translatedTitle, attributes: attributes)
         titleLabel.font = UIFont.italicSystemFont(ofSize: 22)
         
         let symbolConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)
@@ -117,26 +143,24 @@ extension HomeViewController{
         stackView.spacing = 6
         stackView.alignment = .center
         
-        self.tabBarController?.title = nil
         self.tabBarController?.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: stackView)
+        self.tabBarController?.navigationItem.title = nil
     }
     private func setupHeaderLabel() {
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
         
-        let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = "Choose Your Sport"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 26)
         titleLabel.textColor = .whiteText
+       
         
-        let subtitleLabel = UILabel()
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.text = "Live coverage, stats, and real-time news"
         subtitleLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         subtitleLabel.textColor = .whiteText
         subtitleLabel.numberOfLines = 2
+        updateUIStrings()
         
         containerView.addSubview(titleLabel)
         containerView.addSubview(subtitleLabel)

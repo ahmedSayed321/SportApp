@@ -35,11 +35,12 @@ class NetworkServices: NetworkServicesProtocol {
                 "leagueId" : leagueId,
                 
             ]
-            print("Aalamooooooooooooooo")
             AF.request(sport.baseURL, parameters: params)
                    .responseDecodable(of: TeamResponse.self) { response in
+                       
                        switch response.result {
                        case .success(let eventsResponse):
+                          
                            completion(eventsResponse.result ?? [])
                        case .failure(_):
                            completion([])
