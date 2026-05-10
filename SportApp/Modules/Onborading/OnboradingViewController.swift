@@ -34,6 +34,8 @@ class OnboradingViewController: UIPageViewController {
         delegate = self
         view.backgroundColor = .systemBackground
         setupPages()
+        
+        
 
         if let firstPage = pages.first {
             setViewControllers([firstPage], direction: .forward, animated: false, completion: nil)

@@ -58,13 +58,13 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "الوضع الداكن:"
+            "value" : "الوضع الداكن :"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dark Mode:"
+            "value" : "Dark Mode :"
           }
         }
       }
@@ -81,7 +81,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Favoruits"
+            "value" : "Favourites"
           }
         }
       }
@@ -109,13 +109,13 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "اللغة:"
+            "value" : "الانجليزيه :"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Language:"
+            "value" : "English :"
           }
         }
       }
@@ -405,6 +405,91 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Upcoming Events"
+          }
+        }
+      }
+    },
+    "segment_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الكل"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All"
+          }
+        }
+      }
+    },
+    "segment_goalkeepers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حراس المرمى"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goalkeepers"
+          }
+        }
+      }
+    },
+    "segment_defenders" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المدافعون"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Defenders"
+          }
+        }
+      }
+    },
+    "segment_midfielders" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لاعبو الوسط"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Midfielders"
+          }
+        }
+      }
+    },
+    "segment_forwards" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المهاجمون"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Forwards"
           }
         }
       }

@@ -63,8 +63,15 @@ class LeaguesPresenter: LeaguesPresenterProtocol {
     
     func getLeague(at index: Int) -> League { return isSearching ? filteredLeagues[index] : leagues[index] }
     
-    func addLeagueToFav(league: League?,sport:SportType) {
-        print("added to fav from leagues pres")
-        localDataSource.addLeagueToFav(league: league!,sport: sport)
+    func addLeagueToFav(league: League?, sport: SportType) {
+        localDataSource.addLeagueToFav(league: league!, sport: sport)
+    }
+
+    func removeLeagueFromFav(leagueKey: Int) {
+        localDataSource.deleteLeagueFromFav(leagueKey: leagueKey)
+    }
+
+    func isLeagueFavourite(leagueKey: Int) -> Bool {
+        return localDataSource.getFavouriteLeague().contains { $0.leagueKey == leagueKey }
     }
 }
