@@ -13,11 +13,13 @@ class SplashViewController: UIViewController {
     // MARK: - UI Elements
 
     private let animationView: LottieAnimationView = {
-        let view = LottieAnimationView(name: "sports")
+        let view = LottieAnimationView(name: "Olympics")
         view.contentMode = .scaleAspectFit
         view.loopMode = .playOnce
         view.translatesAutoresizingMaskIntoConstraints = false
         view.alpha = 0
+        view.backgroundColor = .clear        
+        view.isOpaque = false
         return view
     }()
 
@@ -25,7 +27,7 @@ class SplashViewController: UIViewController {
         let lbl = UILabel()
         lbl.text = ""
         lbl.font = UIFont.boldSystemFont(ofSize: 48)
-        lbl.textColor = .white
+        //lbl.textColor = .white
         lbl.textAlignment = .center
         lbl.translatesAutoresizingMaskIntoConstraints = false
         lbl.alpha = 0
@@ -56,12 +58,12 @@ class SplashViewController: UIViewController {
     // MARK: - Setup
 
     private func setupUI() {
-        view.backgroundColor = UIColor(
-            red: 26/255,
-            green: 26/255,
-            blue: 46/255,
-            alpha: 1
-        )
+//        view.backgroundColor = UIColor(
+//            red: 26/255,
+//            green: 26/255,
+//            blue: 46/255,
+//            alpha: 1
+//        )
         view.addSubview(animationView)
         view.addSubview(appNameLabel)
 
@@ -87,19 +89,23 @@ class SplashViewController: UIViewController {
         animationView.transform = CGAffineTransform(translationX: 0, y: -view.bounds.height)
         animationView.alpha = 0
 
-        UIView.animate(
-            withDuration: 1.1,
-            delay: 0.0,
-            options: .curveEaseOut
-        ) {
-            self.animationView.transform = .identity
-            self.animationView.alpha = 1
-        } completion: { _ in
-            // Start the Lottie animation after logo settles
-            self.animationView.play { finished in
-                guard finished else { return }
-                // Step 2: Netflix-style text reveal after Lottie finishes
-                self.animateNetflixText()
+        // Start text animation immediately (no delay)
+        animateNetflixText()
+
+        // Delay for 1 second before showing and playing the Lottie animation
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            UIView.animate(
+                withDuration: 1.1,
+                delay: 0.0,
+                options: .curveEaseOut
+            ) {
+                self.animationView.transform = .identity
+                self.animationView.alpha = 1
+            } completion: { _ in
+                // Start the Lottie animation
+                self.animationView.play { finished in
+                    // Lottie animation completes, stays visible on last frame
+                }
             }
         }
     }
@@ -132,10 +138,8 @@ class SplashViewController: UIViewController {
     /// When all letters are done, fires `onAnimationFinished` after a short pause.
     private func typeLetters(_ letters: [Character], into current: String, delay: TimeInterval) {
         guard !letters.isEmpty else {
-            // All letters typed — wait a beat then hand off
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                self.onAnimationFinished?()
-            }
+            // All letters typed — navigate immediately
+            self.onAnimationFinished?()
             return
         }
 

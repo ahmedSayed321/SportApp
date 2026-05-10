@@ -66,6 +66,11 @@ class TeamDetailsViewController: UIViewController {
         presenter?.setOutlets()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateSegmentTitles()
+    }
+
     // MARK: - Setup Helpers
 
     private func setupTeamImageCard() {
@@ -107,13 +112,28 @@ class TeamDetailsViewController: UIViewController {
         playerSegment.backgroundColor = .appPrimaryBackground
         playerSegment.selectedSegmentTintColor = UIColor.systemGreen.withAlphaComponent(0.85)
 
+        updateSegmentTitles()
         playerSegment.addTarget(self, action: #selector(segmentChanged(_:)), for: .valueChanged)
+    }
+
+    private func updateSegmentTitles() {
+        let titles = [
+            "segment_all".localized,
+            "segment_goalkeepers".localized,
+            "segment_defenders".localized,
+            "segment_midfielders".localized,
+            "segment_forwards".localized
+        ]
+        for index in 0..<min(playerSegment.numberOfSegments, titles.count) {
+            playerSegment.setTitle(titles[index], forSegmentAt: index)
+        }
     }
 
     @objc private func segmentChanged(_ sender: UISegmentedControl) {
         presenter?.filterPlayers(by: sender.selectedSegmentIndex)
     }
 }
+
 
 // MARK: - UITableViewDelegate & DataSource
 

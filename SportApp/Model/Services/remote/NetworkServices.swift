@@ -26,8 +26,12 @@ protocol NetworkServicesProtocol{
 
 class NetworkServices: NetworkServicesProtocol {
     static let instanse : NetworkServicesProtocol = NetworkServices()
-    private init(){}
     private let apiKey = "d5f5ec6ad3d3f8848bff82cd403eaff46889e2aa61bc5dee3be3b4b32f12c2d3"
+    private let session: Session
+    
+    init(session: Session = AF) {
+        self.session = session
+    }
     func getTeams(leagueId: Int, sport: SportType, completion: @escaping ([Team]) -> Void) {
             let params: Parameters = [
                 "met"    : "Teams",
@@ -35,7 +39,7 @@ class NetworkServices: NetworkServicesProtocol {
                 "leagueId" : leagueId,
                 
             ]
-            AF.request(sport.baseURL, parameters: params)
+            session.request(sport.baseURL, parameters: params)
                    .responseDecodable(of: TeamResponse.self) { response in
                        
                        switch response.result {
@@ -55,7 +59,7 @@ class NetworkServices: NetworkServicesProtocol {
                 "teamId" : teamId,
             ]
             
-            AF.request(sport.baseURL, parameters: params)
+            session.request(sport.baseURL, parameters: params)
                    .responseDecodable(of: PlayerResponse.self) { response in
                        switch response.result {
                        case .success(let eventsResponse):
@@ -77,7 +81,7 @@ class NetworkServices: NetworkServicesProtocol {
                "APIkey" : apiKey
            ]
            
-           AF.request(sport.baseURL, parameters: params)
+           session.request(sport.baseURL, parameters: params)
                .responseDecodable(of: LeagueResponse.self) { response in
                    switch response.result {
                    case .success(let leagueResponse):
@@ -100,7 +104,7 @@ class NetworkServices: NetworkServicesProtocol {
             "timezone" : timeZone
         ]
         
-        AF.request(sport.baseURL, parameters: params)
+        session.request(sport.baseURL, parameters: params)
                .responseDecodable(of: LeagueEventsResponse.self) { response in
                    switch response.result {
                    case .success(let eventsResponse):
