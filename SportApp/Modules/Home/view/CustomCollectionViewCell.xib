@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="teamAndHomeCell" id="qO3-CR-Say" customClass="HomeCollectionViewCell" customModule="SportApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="311" height="301"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LN4-nx-lnx">
+                <rect key="frame" x="0.0" y="0.0" width="311" height="301"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" image="square.and.pencil.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="48r-se-ws0">
+                        <rect key="frame" x="8" y="8.6666666666666714" width="295" height="201.66666666666663"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUn-gC-pHm">
+                        <rect key="frame" x="8" y="239.33333333333334" width="295" height="27.666666666666657"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="qUn-gC-pHm" secondAttribute="bottom" constant="34" id="5w7-oA-tmk"/>
+                    <constraint firstAttribute="trailing" secondItem="qUn-gC-pHm" secondAttribute="trailing" constant="8" id="KHn-6r-tn4"/>
+                    <constraint firstItem="qUn-gC-pHm" firstAttribute="top" secondItem="48r-se-ws0" secondAttribute="bottom" constant="28.333333333333343" id="P7i-dK-Ndk"/>
+                    <constraint firstAttribute="trailing" secondItem="48r-se-ws0" secondAttribute="trailing" id="SAQ-md-zYp"/>
+                    <constraint firstItem="48r-se-ws0" firstAttribute="top" secondItem="LN4-nx-lnx" secondAttribute="top" constant="8" id="bbd-0h-znD"/>
+                    <constraint firstItem="48r-se-ws0" firstAttribute="leading" secondItem="LN4-nx-lnx" secondAttribute="leading" constant="8" id="brS-aK-ndP"/>
+                    <constraint firstItem="qUn-gC-pHm" firstAttribute="leading" secondItem="LN4-nx-lnx" secondAttribute="leading" constant="8" id="eNh-UZ-14g"/>
+                    <constraint firstAttribute="trailing" secondItem="48r-se-ws0" secondAttribute="trailing" constant="8" id="sbA-mk-sSa"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <connections>
+                <outlet property="img" destination="48r-se-ws0" id="PsC-DM-I5X"/>
+                <outlet property="sportName" destination="qUn-gC-pHm" id="l5g-kf-hxn"/>
+            </connections>
+            <point key="canvasLocation" x="-229.7709923664122" y="44.718309859154935"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="square.and.pencil.circle.fill" catalog="system" width="128" height="123"/>
+    </resources>
+</document>
